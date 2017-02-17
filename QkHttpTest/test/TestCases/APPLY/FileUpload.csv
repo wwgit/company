@@ -1,0 +1,31 @@
+{
+	"request" : {
+		"headers" : {
+			"X-Requested-With" : "XMLHttpRequest",
+			"Content-Type" : "application/x-www-form-urlencoded; charset=UTF-8"
+		},
+		"method" : "post",
+		"url" : "http://qapp-sit-v1/Fileupload/UploadFile",
+		"data" : {},
+		"form" : {
+			"Filename" : "2.jpg",
+			"name" : "2.jpg",
+			"chunk" : "0",
+			"chunks" : "2",
+			"file__name" : "2.jpg",
+			"appId" : "57818",
+			"fileType" : "fileTypeApp1"
+		},
+		"images" : {
+			"file" : "test/resources/image.jpg"
+		}
+	},
+	"dependencies" : [{
+			"module" : "APPLY",
+			"testcase" : "Login"
+		}, {
+			"module" : "APPLY",
+			"testcase" : "PostFileList"
+		}
+	]
+}

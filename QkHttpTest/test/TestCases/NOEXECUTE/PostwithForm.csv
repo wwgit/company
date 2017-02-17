@@ -1,0 +1,51 @@
+{
+	"request" : {
+		"headers" : {
+			"accept" : "application/json"
+		},
+		"method" : "post",
+		"url" : "http://httpbin.org/post",
+		"args" : {},
+		"form" : {
+			"field1" : "Mark",
+			"field2" : "John"
+		},
+		"data" : "",
+		"files" : {},
+		"images" : {}
+	},
+	"depenencies" : [{
+			"module" : "BAT",
+			"testcase" : "PostwithImages"
+		}, {
+			"module" : "BAT",
+			"testcase" : "GetWithArgs"
+		}
+	],
+	"resultCompare" : {
+		"acceptpattern" : "json",
+		"Compare" :
+		[{
+				"method" : "equal",
+				"path" : "headers.Content-Type",
+				"expectvalue" : "application/json; charset=utf-8"
+			}, {
+				"method" : "contain",
+				"path" : "headers.Content-Type",
+				"pattern" : "$placeholder$; charset=utf-8",
+				"expectvalue" : "application/json"
+			}
+		]
+	},
+	"postSetting" : [{
+			"module" : "name",
+			"testcase" : "",
+			"params" : [{
+					"method" : "replace",
+					"path" : "headers.Content-Type",
+					"pattern" : "$placeholder$; charset=utf-8"
+				}
+			]
+		}
+	]
+}

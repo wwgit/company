@@ -1,0 +1,21 @@
+{
+	"request" : {
+		"headers" : {
+			"authorization":"Bearer Zjk5N2RhODgxNTVhNGRmYzk0ZTM3YjY3ODU4NWY1NTA"
+		},
+		"method" : "get",
+		"url" : "https://loanapp-demo.dianrong.com/v2/quark/apps/status",
+		"args" : {
+			"extId" : "161221057109010001102"
+		}
+	},
+	"resultCompare" : {
+		"acceptpattern" : "json",
+		"compares" : [{
+				"method" : "equal",
+				"path" : "code",
+				"expectvalue" : "20000"
+			}
+		]
+	}
+}

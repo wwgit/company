@@ -1,0 +1,16 @@
+{
+	"headers" : {
+		"X-Requested-With" : "XMLHttpRequest",
+		"Content-Type" : "application/json; charset=utf-8"
+	},
+"method":"post",
+	"url" : "https://passport.cnblogs.com/user/signin",
+	"args" : {},
+	"form" : {},
+	"data" :  "{
+		\"input1\" : \"h88Hk+pV+Yy/Hj+14Z2ElmuvqftqIgiFSK0uQi2H9XLNYIo1i8ZxELdiv44lMzvG4ftkxntfZl6BvLW1f4pOuzSkCWR1yKLecYtYsk8/6ncxZDHuNCZNYUfh75mDUQ/ypHoMDslqr1TyI6E+M0Uxsv0Tm+dSSywo2vFH72U4+Oc=\",
+		\"input2\" : \"BPoOhsUGAHtL79t6M29AtFtyMuw/2KCIE8O91eBXIg4yQc2+fi7FJi6Rha8bof8MTPh4x7Z0iceDKcORuFxstRXi9FgO83JBHiHhefCNB6Oeg4nOhtpQFD179594Gh5O3vS3H5tO9vhOs8333PXjEXwIAlw4SS9IbYiXnb6ENXw=\",
+		\"remember\" : false
+	}",
+	"files" : {}
+}

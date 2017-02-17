@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- suite name="Suite" parallel="methods" thread-count="3"-->
+<suite name="Suite" >
+	<parameter name="testcaseFolderPath" value="test\TestCases" />
+	<parameter name="logConfgFilePath" value="config/log4j.properties" />
+	<test name="Test">
+	<packages>
+		<package name="com.qf.test.unittest">
+	</package>
+	</packages >
+		<!-- classes>
+			<class name="com.qf.test.unittest.BAT_Test">
+			</class>
+		</classes -->
+	</test> <!-- Test -->
+	<listeners>
+		<!-- arrow插件实现用例失败重跑以及生成测试报告 -->
+		<listener class-name="com.qf.test.util.TestngListener" />
+		<listener class-name="com.qf.test.util.RetryListener" />
+	</listeners>
+</suite> <!-- Suite -->
