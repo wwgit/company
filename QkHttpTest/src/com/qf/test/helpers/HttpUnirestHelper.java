@@ -11,6 +11,7 @@ package com.qf.test.helpers;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.UUID;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.request.BaseRequest;
@@ -32,30 +33,46 @@ import com.mashape.unirest.http.options.Options;
 */
 public abstract class HttpUnirestHelper {
 	
-	public static void SetHeaders(HttpRequest req, Map<String,String> headers) {
+	private static String uuid = UUID.randomUUID().toString();
+	
+	public static void setHeaders(HttpRequest req, Map<String,String> headers) {
 		req.headers(headers);
 	}
-	public static void SetHeader(HttpRequest req, String name, String value) {
+	public static void setHeader(HttpRequest req, String name, String value) {
 		req.header(name, value);
 	}
-	public static void SetCommonDefaultHeaders(HttpRequest req) {
-		SetHeader(req, "Cache-Control", "no-cache");
-		SetHeader(req, "Connection", "Keep-Alive");
-		SetHeader(req, "Accept", "*/*");
-		SetHeader(req, "Accept-Language", "en,zh-cn,zh;q=0.5");
-		SetHeader(req, "Accept-Charset", "GB2312,utf-8");
-		SetHeader(req, "Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+	public static void setCommonDefaultHeaders(HttpRequest req) {
+		setHeader(req, "Cache-Control", "no-cache");
+		setHeader(req, "Connection", "Keep-Alive");
+		setHeader(req, "Accept", "*/*");
+		setHeader(req, "Accept-Language", "en,zh-cn,zh;q=0.5");
+		setHeader(req, "Accept-Charset", "GB2312,utf-8");
+		setHeader(req, "Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 	}
-	public static void SetAjaxDefaultHeaders(HttpRequest req) {
-		SetHeader(req, "X-Requested-With", "XMLHttpRequest");
-		SetCommonDefaultHeaders(req);
+	public static void setAjaxDefaultHeaders(HttpRequest req) {
+		setHeader(req, "X-Requested-With", "XMLHttpRequest");
+		setCommonDefaultHeaders(req);
 	}
 	public static void SetUploadDefaultHeaders(HttpRequest req) {
-		SetHeader(req, "Content-Type", "multipart/form-data");
-		SetCommonDefaultHeaders(req);
+		setHeader(req, "Content-Type", "multipart/form-data;boundary=" + uuid);
+		setCommonDefaultHeaders(req);
+	}
+	public static void SetBasicAuth(HttpRequest req, String username, String password) {
+		req.basicAuth(username, password);
+	}
+	public static void setTokenHeader(HttpRequest req, String token) {
+		setHeader(req, "Autorization", token);
+	}
+	public static void setCookie(HttpRequest req, String cookieValue) {
+		setHeader(req, "Cookie", cookieValue);
 	}
 	
-	
+	public static void setParams(HttpRequest req, Map<String,Object> args) {
+		req.queryString(args);
+	}
+	public static HttpResponse<String> sendRequest(HttpRequest req) throws UnirestException {
+		return req.asString();
+	}
 	
 	private static HttpRequest getInitHttpRequest(String url, String methodName) 
 												 throws NoSuchMethodException, SecurityException, 
@@ -64,5 +81,7 @@ public abstract class HttpUnirestHelper {
 		Method methodObj = Unirest.class.getMethod(methodName, String.class);
 		return (HttpRequest) methodObj.invoke(null, url);
 	}
+	
+	
 
 }
