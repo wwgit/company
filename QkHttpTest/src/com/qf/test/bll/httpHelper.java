@@ -3,18 +3,20 @@ package com.qf.test.bll;
 import java.io.File;
 import java.util.*;
 
+import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.http.options.Options;
 import com.qf.test.dal.jsonParse;
 import com.qf.test.entity.Compare;
 
 public class httpHelper {	
 
-
+	
 	public static void SetDefaultHeaders(Map headers) {
 		String key = null;
 		String value = null;
@@ -24,6 +26,7 @@ public class httpHelper {
 			value = (String) headers.get(key);
 			Unirest.setDefaultHeader(key, value);
 		}
+		
 	}
 
 	public static HttpResponse<String> GetWithArgs(Map headers, String url,
@@ -51,6 +54,7 @@ public class httpHelper {
 		String strBody = jsonParse.dataCovertToString(body);
 		
 		strResponse = Unirest.post(url).headers(headers).body(strBody).asString();
+//		Unirest.options(url)
 
 		return strResponse;
 	}
