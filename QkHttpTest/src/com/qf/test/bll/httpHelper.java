@@ -3,20 +3,20 @@ package com.qf.test.bll;
 import java.io.File;
 import java.util.*;
 
-import org.apache.http.client.HttpClient;
 import org.json.JSONException;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.http.options.Options;
+import com.mashape.unirest.request.HttpRequestWithBody;
+import com.mashape.unirest.request.HttpRequest;
 import com.qf.test.dal.jsonParse;
 import com.qf.test.entity.Compare;
 
 public class httpHelper {	
 
-	
+
 	public static void SetDefaultHeaders(Map headers) {
 		String key = null;
 		String value = null;
@@ -26,7 +26,6 @@ public class httpHelper {
 			value = (String) headers.get(key);
 			Unirest.setDefaultHeader(key, value);
 		}
-		
 	}
 
 	public static HttpResponse<String> GetWithArgs(Map headers, String url,
@@ -54,7 +53,6 @@ public class httpHelper {
 		String strBody = jsonParse.dataCovertToString(body);
 		
 		strResponse = Unirest.post(url).headers(headers).body(strBody).asString();
-//		Unirest.options(url)
 
 		return strResponse;
 	}
@@ -70,6 +68,10 @@ public class httpHelper {
 
 			strResponse = Unirest.post(url).fields(form)
 					.field(key, new File((String) files.get(key))).asString();
+//			HttpRequestWithBody httpReqBody = Unirest.post(url).header("123", "123");
+//			HttpRequest req = new HttpRequest(null, "post");
+//			httpReqBody.basicAuth(username, password)
+			
 		}
 		return strResponse;
 	}
@@ -88,6 +90,8 @@ public class httpHelper {
 					.field(key, new File((String) imagines.get(key)),
 							"image/jpeg").asString();
 		}
+//		Unirest.post(url).f
+//		Integer.toBinaryString(i);
 		return strResponse;
 	}
 }

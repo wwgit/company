@@ -250,6 +250,7 @@ public class TestProcess extends BaseParpare {
 		String validError=JsonSchema.Validate(fileName);
 		if(validError!=null)
 			Assert.fail(validError);
+			
 		return RWTxtFileWithJackson.Read(fileName);
 	}
 
