@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- thread-count 定义同时启动的浏览器数 、parallel="tests" 表明每个test都是平级的 -->
+<suite name="夸客 演示自动化测试项目" parallel="tests" thread-count="1">
+	<!-- driver的属性配置文件保存路径 -->
+	<parameter name="driverConfgFilePath" value="config/driver.properties" />
+	<!-- 进程等待1秒中的控制时间 -->
+	<parameter name="sleepTime" value="800" />
+	<!-- 页面元素10秒不出现超时时间 -->
+	<parameter name="timeOut" value="60" />
+	<!-- 这个是等待alert弹出的时间 单位毫秒 -->
+	<parameter name="waitMillisecondsForAlert" value="40000" />
+	<!-- chrome,firefox,ghost和ie不区分大小写 -->
+	<parameter name="browserName" value="firefox" />
+	<!-- 定义测试的站点 -->
+	<parameter name="testurl" value="about:blank" />
+
+	<!-- 定义测试模块，用test标签包围 -->
+	<test name="演示测试用例" preserve-order="true">
+		
+		<!--<packages>
+			<package name="com.loan.autotest.testcase.test.TestPage_002_Testcase2xiuhua_Test" />
+		</packages>
+		-->
+		
+		<classes>
+			<class name="com.loan.autotest.testcase.lichen.testlogin.TestloginPage_001_LoginSuc_Test" />
+		</classes>
+	
+	</test>
+
+
+
+
+
+	<listeners>		
+		<!-- reportng生成测试报告-->
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" /> 
+		
+		<!-- excel生成测试报告 	-->
+		<listener class-name="com.incito.excelReporter.TestResultListener" />
+		<listener class-name="com.incito.excelReporter.ExcelReporter" />
+				
+		<!-- arrow插件实现用例失败重跑以及生成测试报告 
+		<listener class-name="com.loan.autotest.plugins.arrow.TestResultListener" />
+		<listener class-name="com.loan.autotest.plugins.arrow.RetryListener" />
+		<listener class-name="com.loan.autotest.plugins.arrow.PowerEmailableReporter" />
+		-->
+	</listeners>
+
+
+</suite> 
